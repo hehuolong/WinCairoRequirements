@@ -33,7 +33,10 @@ _ReSharper*/
 Build/
 Lib/
 bin/
-include/
+/include/
+/src/icu/include/
+/src/opencflite/objc4/include/objc/
+
 
 src/icu/source/data/out/icudt46l.dat
 src/icu/source/data/out/tmp/icudata.lst
