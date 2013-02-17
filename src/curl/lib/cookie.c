@@ -1170,19 +1170,30 @@ struct Cookie *curl_ext_cookie_getlist(CURL *curl,
 	return Curl_cookie_getlist(data->cookies, host, path, secure);
 }
 
-struct Cookie *curl_ext_cookie_add(CURL *curl, bool header, 
-								   char *lineptr, 
-								   const char *domain, 
-								   const char *path)
+void curl_ext_cookie_add(CURL *curl,
+					     const char *strCookie,
+						 const char *domain, 
+						 const char *path)
 {
 	struct SessionHandle *data = curl;
-	return Curl_cookie_add(data, data->cookies, header,
-						   lineptr, domain, path);
+
+	if(!data->cookies) {
+		/* if cookie engine was not running, activate it */
+		data->cookies = Curl_cookie_init(data, NULL, NULL, TRUE);
+	}
+
+	if(checkprefix("Set-Cookie:", strCookie)) {
+      /* HTTP Header format line */
+      Curl_cookie_add(data, data->cookies, TRUE, strCookie + 11, domain, path);
+	} else {
+      /* Netscape format line */
+      Curl_cookie_add(data, data->cookies, FALSE, strCookie, domain, path);
+	}
 }
 
-void curl_ext_cookie_freelist(struct Cookie *cookies, bool cookiestoo)
+void curl_ext_cookie_freelist(struct Cookie *cookies)
 {
-	Curl_cookie_freelist(cookies, cookiestoo);
+	Curl_cookie_freelist(cookies, FALSE);
 }
 
 void curl_ext_cookie_clearall(CURL *curl)
@@ -1195,6 +1206,12 @@ void curl_ext_cookie_clearsess(CURL *curl)
 {
 	struct SessionHandle *data = curl;
 	Curl_cookie_clearsess(data->cookies);
+}
+
+void curl_ext_cookie_flush(CURL *curl)
+{
+	struct SessionHandle *data = curl;
+	Curl_flush_cookies(data, 0);
 }
 
 #endif /* CURL_DISABLE_HTTP || CURL_DISABLE_COOKIES */

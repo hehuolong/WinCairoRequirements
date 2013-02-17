@@ -50,16 +50,18 @@ CURL_EXTERN struct Cookie *curl_ext_cookie_getlist(CURL *curl,
 												   const char *path, 
 												   bool secure);
 
-CURL_EXTERN struct Cookie *curl_ext_cookie_add(CURL *curl, bool header, 
-										char *lineptr, 
-										const char *domain, 
-										const char *path);
+CURL_EXTERN void curl_ext_cookie_add(CURL *curl,
+								     const char *strCookie,
+									 const char *domain, 
+									 const char *path);
 
-CURL_EXTERN void curl_ext_cookie_freelist(struct Cookie *cookies, bool cookiestoo);
+CURL_EXTERN void curl_ext_cookie_freelist(struct Cookie *cookies);
 
 CURL_EXTERN void curl_ext_cookie_clearall(CURL *curl);
 
 CURL_EXTERN void curl_ext_cookie_clearsess(CURL *curl);
+
+CURL_EXTERN void curl_ext_cookie_flush(CURL *curl);
 
 #ifdef  __cplusplus
 }
