@@ -4,6 +4,7 @@
 	Version="8.00"
 	Name="libcurl"
 	ProjectGUID="{87EE9DA4-DE1E-4448-8324-183C98DCA588}"
+	RootNamespace="libcurl"
 	>
 	<Platforms>
 		<Platform
@@ -83,9 +84,12 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Install Headers"
-				CommandLine="mkdir &quot;$(SolutionDir)include\curl&quot;&#x0D;&#x0A;xcopy /Y /R &quot;$(ProjectDir)..\include\curl\*.h&quot; &quot;$(SolutionDir)include\curl\&quot;"
+				CommandLine="mkdir &quot;$(SolutionDir)include\curl&quot;&#x0D;&#x0A;xcopy /Y /R &quot;$(ProjectDir)..\include\curl\*.h&quot; &quot;$(SolutionDir)include\curl\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -158,9 +162,12 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Install Headers"
-				CommandLine="mkdir &quot;$(SolutionDir)include\curl&quot;&#x0D;&#x0A;xcopy /Y /R &quot;$(ProjectDir)..\include\curl\*.h&quot; &quot;$(SolutionDir)include\curl\&quot;"
+				CommandLine="mkdir &quot;$(SolutionDir)include\curl&quot;&#x0D;&#x0A;xcopy /Y /R &quot;$(ProjectDir)..\include\curl\*.h&quot; &quot;$(SolutionDir)include\curl\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -599,7 +606,7 @@
 				>
 			</File>
 			<File
-				RelativePath="cookie.h"
+				RelativePath=".\cookie.h"
 				>
 			</File>
 			<File

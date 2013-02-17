@@ -25,7 +25,6 @@
 
 #include "setup.h"
 #include <curl/curl.h>
-#include "cookie.h"
 #include "urldata.h"
 
 /* SalfordC says "A structure member may not be volatile". Hence:

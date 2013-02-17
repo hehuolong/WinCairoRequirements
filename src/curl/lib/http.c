@@ -58,7 +58,6 @@
 #include "formdata.h"
 #include "progress.h"
 #include "curl_base64.h"
-#include "cookie.h"
 #include "strequal.h"
 #include "sslgen.h"
 #include "http_digest.h"

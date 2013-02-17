@@ -1160,4 +1160,41 @@ void Curl_flush_cookies(struct SessionHandle *data, int cleanup)
   Curl_share_unlock(data, CURL_LOCK_DATA_COOKIE);
 }
 
+
+struct Cookie *curl_ext_cookie_getlist(CURL *curl, 
+									   const char *host, 
+									   const char *path, 
+									   bool secure)
+{
+	struct SessionHandle *data = curl;
+	return Curl_cookie_getlist(data->cookies, host, path, secure);
+}
+
+struct Cookie *curl_ext_cookie_add(CURL *curl, bool header, 
+								   char *lineptr, 
+								   const char *domain, 
+								   const char *path)
+{
+	struct SessionHandle *data = curl;
+	return Curl_cookie_add(data, data->cookies, header,
+						   lineptr, domain, path);
+}
+
+void curl_ext_cookie_freelist(struct Cookie *cookies, bool cookiestoo)
+{
+	Curl_cookie_freelist(cookies, cookiestoo);
+}
+
+void curl_ext_cookie_clearall(CURL *curl)
+{
+	struct SessionHandle *data = curl;
+	Curl_cookie_clearall(data->cookies);
+}
+
+void curl_ext_cookie_clearsess(CURL *curl) 
+{
+	struct SessionHandle *data = curl;
+	Curl_cookie_clearsess(data->cookies);
+}
+
 #endif /* CURL_DISABLE_HTTP || CURL_DISABLE_COOKIES */

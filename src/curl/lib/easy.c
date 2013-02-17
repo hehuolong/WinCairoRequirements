@@ -51,6 +51,7 @@
 #include "strequal.h"
 #include "urldata.h"
 #include <curl/curl.h>
+#include "cookie.h"
 #include "transfer.h"
 #include "sslgen.h"
 #include "url.h"

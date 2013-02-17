@@ -66,7 +66,7 @@
 */
 #define RESP_TIMEOUT (1800*1000)
 
-#include "cookie.h"
+#include <curl/curl.h>
 #include "formdata.h"
 
 #ifdef USE_SSLEAY
